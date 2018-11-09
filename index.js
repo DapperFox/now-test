@@ -1,3 +1,8 @@
+const { parse } = require("url");
+const cowsay = require("cowsay").say;
+
 module.exports = (req, res) => {
-  res.end(`This is a lamda response`)
-}
+  const { query } = parse(req.url, true);
+  const { text = "Use query `text`" } = query;
+  res.end(cowsay({ text }));
+};
